@@ -20,115 +20,115 @@ def bracket_checker(lst):
                 repeat = True
     return lst
 
-input  = str(input())
+n = int(input())
 
-input = input.replace(" ","")
-input = list(input.strip())
+all = []
 
-lst = []
-
-num = ''
-for i in input:
-    if i.isdigit():
-        num += i
-    else:
-        if num != '':
-            lst.append(num)
-            num = ''
-        lst.append(i)
-if num != '':
-    lst.append(num)
-
-# print(lst)
-
-if len(lst) < 3:
-    if lst[0] =='-':
-        print("ERROR")
-        exit()
-if(len(lst)) < 2:
-    print(lst[0])
-    exit()
+for i in range(2):
+    input  = str(input())
+    all.append(input)
+#TADY JE PROBLEM
 
 
-while len(lst) > 1:        
-        
-    l = len(lst)-1
-    i = 0
-    while i < l:
-        if lst[i+1].isdigit() and lst[i-1].isdigit():
-            if lst[i] == '*':
-                temp = int(lst[i-1]) * int(lst[i+1])
-                lst[i] = str(temp)
-                lst[i+1]='x'
-                lst[i-1]='x'
-                l -= 2
-                i = 0
-            elif lst[i] == '/':
-                temp = int(int(lst[i-1]) / int(lst[i+1]))
-                lst[i] = str(temp)
-                lst[i+1]='x'
-                lst[i-1]='x'
-                l -= 2
-                i = 0
-        i+=1    
-        # print(lst)
-        lst = deleter(lst)
-        
-    lst = bracket_checker(lst)
+for i in range(len(all)):
+    input = all[i]
+
+    input = input.replace(" ","")
+    input = list(input.strip())
+
+    lst = []
+
+    num = ''
+    for i in input:
+        if i.isdigit():
+            num += i
+        else:
+            if num != '':
+                lst.append(num)
+                num = ''
+            lst.append(i)
+    if num != '':
+        lst.append(num)
+
     # print(lst)
 
-    l = len(lst)-1
+    if len(lst) < 3:
+        if lst[0] =='-':
+            print("ERROR")
+            exit()
+    if(len(lst)) < 2:
+        print(lst[0])
+        exit()
 
-    i = 0
-    while i < l:
-        if lst[i+1].isdigit() and lst[i-1].isdigit():
-            if lst[i] == '+':
-                if len(lst)> 3:
-                        if lst[i+2] != '*' and lst[i+2] != '/':
-                            if lst[i-2] != '*' and lst[i-2] != '/':
-                                temp = int(lst[i-1]) + int(lst[i+1])
-                                lst[i] = str(temp)
-                                lst[i+1]='x'
-                                lst[i-1]='x'
-                                l -= 2
-                                i = 0
-                else:
-                    temp = int(lst[i-1]) + int(lst[i+1])
+
+    while len(lst) > 1:        
+            
+        l = len(lst)-1
+        i = 0
+        while i < l:
+            if lst[i+1].isdigit() and lst[i-1].isdigit():
+                if lst[i] == '*':
+                    temp = int(lst[i-1]) * int(lst[i+1])
                     lst[i] = str(temp)
                     lst[i+1]='x'
                     lst[i-1]='x'
                     l -= 2
                     i = 0
-            elif lst[i] == '-':
-                if len(lst)> 3:
-                        if lst[i+2] != '*' and lst[i+2] != '/':
-                            if lst[i-2] != '*' and lst[i-2] != '/':
-                                temp = int(lst[i-1]) - int(lst[i+1])
-                                lst[i] = str(temp)
-                                lst[i+1]='x'
-                                lst[i-1]='x'
-                                l -= 2
-                                i = 0  
-                else:
-                    temp = int(lst[i-1]) - int(lst[i+1])
+                elif lst[i] == '/':
+                    temp = int(int(lst[i-1]) / int(lst[i+1]))
                     lst[i] = str(temp)
                     lst[i+1]='x'
                     lst[i-1]='x'
                     l -= 2
                     i = 0
-        i+=1    
-        print(lst)
-        lst = deleter(lst)
-    lst = bracket_checker(lst)    
-print(lst)
+            i+=1    
+            # print(lst)
+            lst = deleter(lst)
+            
+        lst = bracket_checker(lst)
+        # print(lst)
 
+        l = len(lst)-1
 
-
-
-
-
-
-
-
-
-
+        i = 0
+        while i < l:
+            if lst[i+1].isdigit() and lst[i-1].isdigit():
+                if lst[i] == '+':
+                    if len(lst)> 3:
+                            if lst[i+2] != '*' and lst[i+2] != '/':
+                                if lst[i-2] != '*' and lst[i-2] != '/':
+                                    temp = int(lst[i-1]) + int(lst[i+1])
+                                    lst[i] = str(temp)
+                                    lst[i+1]='x'
+                                    lst[i-1]='x'
+                                    l -= 2
+                                    i = 0
+                    else:
+                        temp = int(lst[i-1]) + int(lst[i+1])
+                        lst[i] = str(temp)
+                        lst[i+1]='x'
+                        lst[i-1]='x'
+                        l -= 2
+                        i = 0
+                elif lst[i] == '-':
+                    if len(lst)> 3:
+                            if lst[i+2] != '*' and lst[i+2] != '/':
+                                if lst[i-2] != '*' and lst[i-2] != '/':
+                                    temp = int(lst[i-1]) - int(lst[i+1])
+                                    lst[i] = str(temp)
+                                    lst[i+1]='x'
+                                    lst[i-1]='x'
+                                    l -= 2
+                                    i = 0  
+                    else:
+                        temp = int(lst[i-1]) - int(lst[i+1])
+                        lst[i] = str(temp)
+                        lst[i+1]='x'
+                        lst[i-1]='x'
+                        l -= 2
+                        i = 0
+            i+=1    
+            print(lst)
+            lst = deleter(lst)
+        lst = bracket_checker(lst)    
+    print(lst)
