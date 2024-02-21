@@ -20,17 +20,16 @@ def bracket_checker(lst):
                 repeat = True
     return lst
 
+all = []
 n = int(input())
 
-all = []
-
-for i in range(2):
-    input  = str(input())
-    all.append(input)
+for i in range(n):
+    all.append(input())
+ #   all.append(input)
 #TADY JE PROBLEM
 
 
-for i in range(len(all)):
+for i in range(n):
     input = all[i]
 
     input = input.replace(" ","")
@@ -55,10 +54,10 @@ for i in range(len(all)):
     if len(lst) < 3:
         if lst[0] =='-':
             print("ERROR")
-            exit()
+            continue
     if(len(lst)) < 2:
         print(lst[0])
-        exit()
+        continue
 
 
     while len(lst) > 1:        
@@ -128,7 +127,9 @@ for i in range(len(all)):
                         l -= 2
                         i = 0
             i+=1    
-            print(lst)
+            #print(lst)
             lst = deleter(lst)
         lst = bracket_checker(lst)    
+   # print(lst)
     print(lst)
+
