@@ -12,7 +12,7 @@ def bracket_checker(lst):
     repeat = True
     while repeat==True :
         repeat = False
-        for i in range(len(lst)-1):
+        for i in range(1,len(lst)-1):
             if lst[i-1] == '(' and lst[i+1] == ')':
                 lst[i-1] = 'x'
                 lst[i+1] = 'x'
@@ -20,25 +20,44 @@ def bracket_checker(lst):
                 repeat = True
     return lst
 
-all = []
 n = int(input())
 
-for i in range(n):
-    all.append(input())
- #   all.append(input)
-#TADY JE PROBLEM
+all = []
 
+for i in range(2):
+    inp  = input()
+    all.append(inp)
 
-for i in range(n):
-    input = all[i]
+for i in range(len(all)):
+    inp = ""
+    inp = all[i]
 
-    input = input.replace(" ","")
-    input = list(input.strip())
-
+    inp = inp.replace(" ","")
+    inp = list(inp.strip())
+    reset = False
+    
+    for i in range(len(inp)):
+        if inp[i] =='+' or inp[i] == '-' or inp[i] == "*" or inp[i] == "/":
+            if inp[i+1] == '+' or inp[i+1] == '-' or inp[i+1] == '*' or inp[i+1] == '/':
+                print('ERROR')
+                reset = True
+    if reset == True:
+        continue
+            
+    check_lst = ['0','1','2','3','4','5','6','7','8','9','(',')','+','-','*','/']
+    reset = False
+    for i in inp:
+        if i not in check_lst:
+            print('ERROR')
+            reset = True
+            break
+    if reset == True:
+        continue
+    
     lst = []
 
     num = ''
-    for i in input:
+    for i in inp:
         if i.isdigit():
             num += i
         else:
@@ -49,8 +68,6 @@ for i in range(n):
     if num != '':
         lst.append(num)
 
-    # print(lst)
-
     if len(lst) < 3:
         if lst[0] =='-':
             print("ERROR")
@@ -58,8 +75,7 @@ for i in range(n):
     if(len(lst)) < 2:
         print(lst[0])
         continue
-
-
+    
     while len(lst) > 1:        
             
         l = len(lst)-1
@@ -127,9 +143,7 @@ for i in range(n):
                         l -= 2
                         i = 0
             i+=1    
-            #print(lst)
+           # print(lst)
             lst = deleter(lst)
         lst = bracket_checker(lst)    
-   # print(lst)
-    print(lst)
-
+    print(lst[0])
